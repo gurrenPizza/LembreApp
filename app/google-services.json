@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "950592851796",
+    "firebase_url": "https://lembreapp-d3906.firebaseio.com",
+    "project_id": "lembreapp-d3906",
+    "storage_bucket": "lembreapp-d3906.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950592851796:android:50fd5d2d04618945",
+        "android_client_info": {
+          "package_name": "com.ifrj.tcc.lembre"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950592851796-uuic6ats82tvkdtodissofu0m1g9cip3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ifrj.tcc.lembre",
+            "certificate_hash": "5b4a9d416c6a8bb7fb18ee4a84845cb4f55984fa"
+          }
+        },
+        {
+          "client_id": "950592851796-t7it0e515g67p9q5r9bq5nkcfdtge1h8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBum7ZABgx1FDSKRMCv5HvSJmP1k0S-sxM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950592851796-t7it0e515g67p9q5r9bq5nkcfdtge1h8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
