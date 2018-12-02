@@ -1,10 +1,22 @@
 <resources>
     <string name="app_name">Lembre</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Principal</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_subtitle">Editar perfil</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="login_label">Lembre</string>
+    <string name="preencha_todos_os_campos_para_efetuar_o_cadastro">Preencha todos os campos para efetuar o cadastro</string>
+    <string name="nome">Nome</string>
+    <string name="apelido">Apelido</string>
+    <string name="aniversario">Aniversário</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="confirmar_senha">Confirmar senha</string>
+    <string name="feminino">Feminino</string>
+    <string name="masculino">Masculino</string>
+    <string name="enviar">ENVIAR</string>
+    <string name="esqueceu_sua_senha">Esqueceu sua senha?</string>
 </resources>

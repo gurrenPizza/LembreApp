@@ -12,12 +12,14 @@ public class Usuarios {
     private String id;
     private String email;
     private String nome;
-    private String sobrenome;
+    private String nickname;
     private String senha;
     private String aniversario;
     private String sexo;
+    private int xp;
 
     public Usuarios() {
+        this.xp=0;
     }
 
     public void salvar(){
@@ -33,11 +35,20 @@ public class Usuarios {
         hashMapUsuario.put("email", getEmail());
         hashMapUsuario.put("senha", getSenha());
         hashMapUsuario.put("nome", getNome());
-        hashMapUsuario.put("sobrenome", getSobrenome());
+        hashMapUsuario.put("nickname", getNickname());
         hashMapUsuario.put("aniversario", getAniversario());
         hashMapUsuario.put("sexo", getSexo());
+        hashMapUsuario.put("xp", getXp());
 
         return hashMapUsuario;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
     }
 
     public String getId() {
@@ -64,12 +75,12 @@ public class Usuarios {
         this.nome = nome;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getSenha() {

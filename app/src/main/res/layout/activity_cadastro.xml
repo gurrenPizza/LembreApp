@@ -3,65 +3,84 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:theme="@style/AppTheme.NoActionBar"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
-    android:gravity="center"
+    android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.CadastroActivity">
 
     <!-- Aqui vai ficar o código da toolbar !-->
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tbCadastro"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="20sp"/>
-        </android.support.v7.widget.Toolbar>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbCadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.Toolbar>
     <!-- Aqui começa a activity em si !-->
 
     <TextView
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Preencha todos os campos para efetuar o cadastro"
+        android:text="@string/preencha_todos_os_campos_para_efetuar_o_cadastro"
         android:layout_marginBottom="10dp"
-        android:textSize="22sp"
+        android:textSize="20sp"
+        android:paddingRight="35dp"
+        android:paddingLeft="35dp"
         android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:paddingTop="20dp">
+
+
 
     <EditText
         android:id="@+id/edtCadNome"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome" />
+        android:hint="@string/nome"
+        android:textColorHint="@color/colorAccent"
+        android:layout_width="match_parent" />
     <EditText
-        android:id="@+id/edtCadSobrenome"
+        android:id="@+id/edtCadNickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Sobrenome"/>
+        android:hint="@string/apelido"
+        android:textColorHint="@color/colorAccent"/>
     <EditText
         android:id="@+id/edtCadAniversario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Aniversário"
+        android:hint="@string/aniversario"
+        android:textColorHint="@color/colorAccent"
         android:inputType="date"/>
     <EditText
         android:id="@+id/edtCadEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"/>
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/colorAccent"/>
     <EditText
         android:id="@+id/edtCadSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Senha"/>
+        android:hint="@string/senha"
+        android:inputType="textPassword"
+        android:textColorHint="@color/colorAccent"/>
     <EditText
         android:id="@+id/edtCadConfirmaSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Confirmar senha"/>
+        android:inputType="textPassword"
+        android:hint="@string/confirmar_senha"
+        android:textColorHint="@color/colorAccent"/>
 
 
     <RadioGroup
@@ -77,22 +96,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Feminino" />
+            android:text="@string/feminino"
+            android:textColor="@color/colorAccent"/>
 
         <RadioButton
             android:id="@+id/rbCadMasculino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Masculino" />
+            android:text="@string/masculino"
+            android:textColor="@color/colorAccent"/>
     </RadioGroup>
 
     <Button
         android:id="@+id/btnGravar"
+        android:textColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="ENVIAR"/>
-
-
+        android:background="@drawable/custom_button"
+        android:text="@string/enviar"
+        android:textStyle="bold"/>
+    </LinearLayout>
 </LinearLayout>
