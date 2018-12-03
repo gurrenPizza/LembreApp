@@ -95,6 +95,9 @@ public class CadastroActivity extends AppCompatActivity {
                             //se caiu aqui, significa que não tem um nick igual no bd, então
                             //o usuário pode seguir o cadastro normalmente.
 
+                            //ou não né, a vida tá aí pra te trollar, testar suas crenças e
+                            //colocar à prova o raciocínio que você acha que desenvolveu
+
                             usuarios = new Usuarios();
                             //recupera todos os valores nos campos preenchidos na tela pelo usuário
                             //e armazena no objeto de usuário
