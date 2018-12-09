@@ -1,5 +1,6 @@
 package com.ifrj.tcc.lembre.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -42,6 +43,14 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirCriarBaralho();
+            }
+        });
+
     }
 
     @Override
@@ -100,4 +109,11 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void abrirCriarBaralho(){
+        Intent abrirTelaCriarBaralho = new Intent(MainActivity.this, CadastroBaralhoActivity.class);
+        startActivity(abrirTelaCriarBaralho);
+        finish();
+    }
+
 }

@@ -19,4 +19,14 @@
     <string name="masculino">Masculino</string>
     <string name="enviar">ENVIAR</string>
     <string name="esqueceu_sua_senha">Esqueceu sua senha?</string>
+    <string name="crie_um_baralho_novo">Crie um baralho novo!</string>
+    <string name="t_tulo_incr_vel">Título incrível</string>
+    <string name="um_pouquinho_sobre_ele">Um pouquinho sobre ele...</string>
+    <string name="manda_ver">MANDA VER</string>
+
+    <string-array name="categorias">
+        <item>Física</item>
+        <item>Química</item>
+        <item>Matemática</item>
+    </string-array>
 </resources>

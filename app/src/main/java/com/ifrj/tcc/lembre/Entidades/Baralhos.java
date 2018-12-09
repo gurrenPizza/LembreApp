@@ -10,9 +10,7 @@ public class Baralhos {
     private String titulo;
     private String descricao;
     private String categoria;
-    private String img;
     private String autor;
-    private ArrayList<Cartas> listaCartas;
 
     public Baralhos() {    }
 
@@ -53,19 +51,4 @@ public class Baralhos {
         this.categoria = categoria;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public ArrayList<Cartas> getListaCartas() {
-        return listaCartas;
-    }
-
-    public void setListaCartas(ArrayList<Cartas> listaCartas) {
-        this.listaCartas = listaCartas;
-    }
 }

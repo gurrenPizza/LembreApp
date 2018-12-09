@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.CadastroBaralhoActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbCadastroBaralho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/crie_um_baralho_novo"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:textColor="@color/colorAccent"/>
+
+        <EditText
+            android:id="@+id/edtCadTituloBaralho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/t_tulo_incr_vel"
+            android:textColorHint="@color/colorAccent" />
+
+        <EditText
+            android:id="@+id/edtCadDescricaoBaralho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/um_pouquinho_sobre_ele"
+            android:textColorHint="@color/colorAccent" />
+
+        <Spinner
+            android:id="@+id/spinCategorias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        
+        <Button
+            android:id="@+id/btnCadBaralho"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="@string/manda_ver"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"/>
+
+
+    </LinearLayout>
+</LinearLayout>

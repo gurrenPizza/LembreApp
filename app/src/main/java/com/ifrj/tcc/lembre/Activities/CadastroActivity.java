@@ -32,12 +32,12 @@ import com.ifrj.tcc.lembre.R;
 
 public class CadastroActivity extends AppCompatActivity {
 
-    private EditText edtCadEmail;
-    private EditText edtCadNome;
-    private EditText edtCadNickname;
-    private EditText edtCadSenha;
-    private EditText edtCadConfirmaSenha;
-    private EditText edtCadAniversario;
+    private EditText edtCadEmail,
+                     edtCadNome,
+                     edtCadNickname,
+                     edtCadSenha,
+                     edtCadConfirmaSenha,
+                     edtCadAniversario;
     private RadioButton rbMasculino;
     private RadioButton rbFeminino;
     private Button btnGravar;
@@ -81,11 +81,12 @@ public class CadastroActivity extends AppCompatActivity {
                     //resultados onde o nick digitado pelo usuário seja igual a algum já cadastrado
                     //e, adicionando .limitToFirst(1), limita o número de resultados necessários
                     //para terminar a execução a um só.
-                    Query buscaNick = referencia.child("usuarios").orderByChild("nickname").equalTo(edtCadNickname.getText().toString()).limitToFirst(1);
+                    Query buscaNick = referencia.child("usuarios").orderByChild("nickname").equalTo(edtCadNickname.getText().toString());
                     buscaNick.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             //se cair aqui, significa que encontrou um nick igual
+                            String nick;
 
                             Toast.makeText(CadastroActivity.this, "Esse nick já existe, escolha outro por favor!", Toast.LENGTH_LONG).show();
                         }
@@ -94,10 +95,6 @@ public class CadastroActivity extends AppCompatActivity {
                         public void onCancelled(@NonNull DatabaseError databaseError) {
                             //se caiu aqui, significa que não tem um nick igual no bd, então
                             //o usuário pode seguir o cadastro normalmente.
-
-                            //ou não né, a vida tá aí pra te trollar, testar suas crenças e
-                            //colocar à prova o raciocínio que você acha que desenvolveu
-
                             usuarios = new Usuarios();
                             //recupera todos os valores nos campos preenchidos na tela pelo usuário
                             //e armazena no objeto de usuário
@@ -109,10 +106,18 @@ public class CadastroActivity extends AppCompatActivity {
                             //faz a checagem de qual botão de radio está selecionado para preencher o campo sexo
                             if (rbFeminino.isChecked()) {
                                 usuarios.setSexo("Feminino");
-                            } else {
+                                cadastrarUsuario();
+                            } else if(rbMasculino.isChecked()) {
                                 usuarios.setSexo("Masculino");
+                                cadastrarUsuario();
                             }
-                            cadastrarUsuario();
+                            else{
+                                Toast.makeText(CadastroActivity.this, "Preencha todos os campos!",Toast.LENGTH_LONG).show();
+                            }
+                            //ou não né, a vida tá aí pra te trollar, testar suas crenças e
+                            //colocar à prova o raciocínio que você acha que desenvolveu
+
+
                         }
                     });
 
@@ -133,16 +138,12 @@ public class CadastroActivity extends AppCompatActivity {
                 "status_bar_height", "dimen", "android");
         if (idStatusBarHeight > 0) {
             height = getResources().getDimensionPixelSize(idStatusBarHeight);
-            Toast.makeText(this,
-                    "Status Bar Height = " + height,
-                    Toast.LENGTH_LONG).show();
         }else{
             height = 0;
             Toast.makeText(this,
                     "Resources NOT found",
                     Toast.LENGTH_LONG).show();
         }
-
         return height;
     }
 
