@@ -23,6 +23,7 @@
     <string name="t_tulo_incr_vel">Título incrível</string>
     <string name="um_pouquinho_sobre_ele">Um pouquinho sobre ele...</string>
     <string name="manda_ver">MANDA VER</string>
+    <string name="cartas">Cartas</string>
 
     <string-array name="categorias">
         <item>Física</item>

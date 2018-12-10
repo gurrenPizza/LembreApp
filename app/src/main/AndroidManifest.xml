@@ -30,9 +30,10 @@
             android:parentActivityName=".Activities.LoginActivity" />
         <activity
             android:name=".Activities.CadastroBaralhoActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:label="Criar um Baralho"
-            android:parentActivityName=".Activities.MainActivity"/>
+            android:parentActivityName=".Activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.BaralhoActivity"></activity>
     </application>
 
 </manifest>

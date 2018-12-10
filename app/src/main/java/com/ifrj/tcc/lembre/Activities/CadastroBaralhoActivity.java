@@ -137,13 +137,20 @@ public class CadastroBaralhoActivity extends AppCompatActivity {
         try{
             firebase = ConfiguracaoFirebase.getFirebase().child("baralhos");
             firebase.child(baralho.getTitulo()).setValue(baralho);
-            Toast.makeText(CadastroBaralhoActivity.this, "Baralho criado com sucesso!",Toast.LENGTH_LONG).show();
-
+            Toast.makeText(CadastroBaralhoActivity.this, "BaralhoActivity criado com sucesso!",Toast.LENGTH_LONG).show();
+            abrirTelaBaralho();
             return true;
         }catch(Exception e){
             e.printStackTrace();
             return false;
         }
     }
+
+    private void abrirTelaBaralho() {
+        Intent abrirTelaBaralho = new Intent(CadastroBaralhoActivity.this, BaralhoActivity.class);
+        startActivity(abrirTelaBaralho);
+        finish();
+    }
+
 
 }
