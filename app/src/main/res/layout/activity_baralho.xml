@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
     tools:context=".Activities.BaralhoActivity">
 
 
@@ -17,44 +18,91 @@
 
     <TextView
         android:id="@+id/txtTituloBaralho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
         android:text="TITULO_BARALHO"
-        android:textStyle="bold"
         android:textSize="20sp"
-        android:layout_marginBottom="10dp"
-        android:paddingRight="35dp"
-        android:paddingLeft="35dp"
-        android:gravity="center"/>
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txtDescBaralho"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:paddingRight="35dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         android:paddingLeft="35dp"
-        android:text="DESC_BARALHO"/>
+        android:paddingRight="35dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:paddingRight="35dp"
-        android:paddingLeft="35dp"
-        android:text="@string/cartas"
-        android:textSize="17dp"/>
+        <TextView
+            android:id="@+id/txtCategoriaBaralho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/categoria" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+        <TextView
+            android:id="@+id/txtDescBaralho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="DESC_BARALHO" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/cartas"
+            android:textSize="17dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="88dp"
+                android:layout_height="94dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/cartas"
+                android:foregroundGravity="center"
+                android:text="carta_1"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="88dp"
+                android:layout_height="94dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/cartas"
+                android:foregroundGravity="center"
+                android:text="carta_2"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="88dp"
+                android:layout_height="94dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/cartas"
+                android:foregroundGravity="center"
+                android:text="carta_2"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/pink"
+            android:clickable="true"
+            android:focusable="true"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+    </LinearLayout>
 
 </LinearLayout>

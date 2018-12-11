@@ -3,6 +3,8 @@
     package="com.ifrj.tcc.lembre">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -33,7 +35,10 @@
             android:label="Criar um Baralho"
             android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.BaralhoActivity"></activity>
+        <activity android:name=".Activities.BaralhoActivity" />
+        <activity android:name=".Activities.EsqueceuSenhaActivity" />
+        <activity android:name=".Activities.BaralhosUsuarioActivity" />
+        <activity android:name=".Activities.FeedbackActivity"></activity>
     </application>
 
 </manifest>

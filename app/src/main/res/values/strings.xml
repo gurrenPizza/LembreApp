@@ -24,6 +24,9 @@
     <string name="um_pouquinho_sobre_ele">Um pouquinho sobre ele...</string>
     <string name="manda_ver">MANDA VER</string>
     <string name="cartas">Cartas</string>
+    <string name="categoria">Categoria: </string>
+    <string name="recuperar_conta">recuperar conta</string>
+    <string name="enviar_comentario">Enviar feedback</string>
 
     <string-array name="categorias">
         <item>Física</item>

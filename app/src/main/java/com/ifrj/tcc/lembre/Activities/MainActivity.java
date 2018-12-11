@@ -1,7 +1,9 @@
 package com.ifrj.tcc.lembre.Activities;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -13,11 +15,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+import com.ifrj.tcc.lembre.Adapter.BaralhosAdapter;
+import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
+import com.ifrj.tcc.lembre.Entidades.Baralhos;
 import com.ifrj.tcc.lembre.R;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ListView listView;
+    private ArrayList<Baralhos> baralhos;
+    private ArrayAdapter<Baralhos> adapter;
+    private DatabaseReference firebase;
+    private ValueEventListener valueEventListenerBaralhos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +44,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setPadding(0, getStatusBarHeight(), 0, 0);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddBaralho);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +63,46 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        baralhos = new ArrayList<>();
+
+        listView = findViewById(R.id.lvPrincipal);
+        adapter = new BaralhosAdapter(this,baralhos);
+        listView.setAdapter(adapter);
+
+        firebase = ConfiguracaoFirebase.getFirebase().child("baralhos");
+
+        valueEventListenerBaralhos = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                baralhos.clear();
+
+                for(DataSnapshot dados : dataSnapshot.getChildren()){
+                    Baralhos baralhosNovos = dados.getValue(Baralhos.class);
+
+                    baralhos.add(baralhosNovos);
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(MainActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+    } //fim onCreate
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        firebase.removeEventListener(valueEventListenerBaralhos);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebase.addValueEventListener(valueEventListenerBaralhos);
     }
 
     @Override
@@ -77,29 +137,66 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    private int getStatusBarHeight() {
+        int height;
+
+        Resources myResources = getResources();
+        int idStatusBarHeight = myResources.getIdentifier(
+                "status_bar_height", "dimen", "android");
+        if (idStatusBarHeight > 0) {
+            height = getResources().getDimensionPixelSize(idStatusBarHeight);
+        }else{
+            height = 0;
+            Toast.makeText(this,
+                    "Resources NOT found",
+                    Toast.LENGTH_LONG).show();
+        }
+        return height;
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_baralhos) {
+            abrirTelaBaralhos();
+        } else if (id == R.id.nav_favoritos) {
+            Toast.makeText(MainActivity.this, "Essa funcionalidade ainda não está disponível :(", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_feedback) {
+            abrirTelaFeedback();
+        } else if (id == R.id.nav_sobre) {
+            abrirTelaSobre();
+        } else if (id == R.id.nav_sair) {
+            abrirTelaLogin();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void abrirTelaLogin() {
+        Intent abrirTelaLogin = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(abrirTelaLogin);
+        finish();
+    }
+
+    private void abrirTelaBaralhos() {
+        Intent abrirTelaBaralho = new Intent(MainActivity.this, BaralhosUsuarioActivity.class);
+        startActivity(abrirTelaBaralho);
+        finish();
+    }
+
+    private void abrirTelaSobre() {
+
+    }
+
+    private void abrirTelaFeedback() {
+        Intent abrirTelaFeedback = new Intent(MainActivity.this, FeedbackActivity.class);
+        startActivity(abrirTelaFeedback);
+        finish();
     }
 
     private void abrirCriarBaralho(){

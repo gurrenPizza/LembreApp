@@ -26,9 +26,9 @@
         android:id="@+id/fabAddBaralho"
         android:layout_width="54dp"
         android:layout_height="54dp"
-        android:background="#D070D6"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:backgroundTint="@color/pink"
+        app:srcCompat="@drawable/ic_add_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

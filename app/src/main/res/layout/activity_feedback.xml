@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/colorPrimary"
+    tools:context=".Activities.LoginActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/txtCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Fale um pouco sobre o que você achou do app: sugestões de melhorias, bugs ..."
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/edtFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:hint="Seu comentário.."
+        android:inputType="textLongMessage"
+        android:textAlignment="center"
+        android:textColorHint="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/btnMandarFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/enviar_comentario"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -73,10 +73,12 @@ public class CadastroBaralhoActivity extends AppCompatActivity {
 
                 firebase = ConfiguracaoFirebase.getFirebase().child("usuario");
 
-                firebase.child(codUsuario+"/nickname").addValueEventListener(new ValueEventListener() {
+                firebase.child(codUsuario).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        usuario.setNickname((String) dataSnapshot.getValue());
+                        Usuarios usuarios = dataSnapshot.getValue(Usuarios.class);
+
+                        usuario = usuarios;
                     }
 
                     @Override

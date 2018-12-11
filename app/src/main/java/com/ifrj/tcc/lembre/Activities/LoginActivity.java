@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText edtEmail;
     private EditText edtSenha;
-    private TextView txtCadastrar;
+    private TextView txtCadastrar, txtEsqueceuSenha;
     private Button btnLogin;
     private FirebaseAuth autenticacao;
     private Usuarios usuario;
@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         edtSenha = (EditText) findViewById(R.id.edtLoginSenha);
         btnLogin = (Button) findViewById(R.id.btnLogar);
         txtCadastrar = (TextView) findViewById(R.id.txtCadastrar);
+        txtEsqueceuSenha = (TextView) findViewById(R.id.txtEsqueceuSenha);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +61,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        txtEsqueceuSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirTelaEsqueceuSenha();
+            }
+        });
     }
 
     private void validarLogin(){
@@ -81,6 +88,12 @@ public class LoginActivity extends AppCompatActivity {
     public void abrirTelaPrincipal(){
         Intent abrirTelaPrincipal = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(abrirTelaPrincipal);
+        finish();
+    }
+
+    private void abrirTelaEsqueceuSenha() {
+        Intent abrirTelaEsqueciSenha = new Intent(LoginActivity.this, EsqueceuSenhaActivity.class);
+        startActivity(abrirTelaEsqueciSenha);
         finish();
     }
 

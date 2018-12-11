@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@color/colorPrimary"
+    tools:context=".Activities.LoginActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbEsqueci"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="35dp">
+
+    <TextView
+        android:id="@+id/txtCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Preencha o campo abaixo com o seu email!"
+        android:textSize="25sp"
+        android:layout_marginBottom="25dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="10dp" />
+
+        <EditText
+        android:id="@+id/edtLoginEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:textColorHint="@color/colorAccent"
+        />
+
+    <Button
+        android:id="@+id/btnLogar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/recuperar_conta"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp" />
+
+    </LinearLayout>
+</LinearLayout>

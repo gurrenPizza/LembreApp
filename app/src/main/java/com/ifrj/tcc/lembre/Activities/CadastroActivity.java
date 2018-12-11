@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
@@ -43,6 +45,7 @@ public class CadastroActivity extends AppCompatActivity {
     private Button btnGravar;
     private Usuarios usuarios;
     private FirebaseAuth autenticacao;
+    private FirebaseUser firebaseUser;
     private DatabaseReference referencia;
     private android.support.v7.widget.Toolbar tbCadastro;
 
@@ -54,6 +57,7 @@ public class CadastroActivity extends AppCompatActivity {
         tbCadastro = (android.support.v7.widget.Toolbar) findViewById(R.id.tbCadastro);
         setSupportActionBar(tbCadastro);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         tbCadastro.setPadding(0, getStatusBarHeight(), 0, 0);
 
 
@@ -75,51 +79,26 @@ public class CadastroActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (edtCadSenha.getText().toString().equals(edtCadConfirmaSenha.getText().toString())) {
-                    referencia = ConfiguracaoFirebase.getFirebase();
-                    //Query = classe para consultas no Firebase
-                    //nessa linha, é definida a ordem de busca. no laço usuarios procurando por
-                    //resultados onde o nick digitado pelo usuário seja igual a algum já cadastrado
-                    //e, adicionando .limitToFirst(1), limita o número de resultados necessários
-                    //para terminar a execução a um só.
-                    Query buscaNick = referencia.child("usuarios").orderByChild("nickname").equalTo(edtCadNickname.getText().toString());
-                    buscaNick.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            //se cair aqui, significa que encontrou um nick igual
-                            String nick;
 
-                            Toast.makeText(CadastroActivity.this, "Esse nick já existe, escolha outro por favor!", Toast.LENGTH_LONG).show();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            //se caiu aqui, significa que não tem um nick igual no bd, então
-                            //o usuário pode seguir o cadastro normalmente.
-                            usuarios = new Usuarios();
-                            //recupera todos os valores nos campos preenchidos na tela pelo usuário
-                            //e armazena no objeto de usuário
-                            usuarios.setNome(edtCadNome.getText().toString());
-                            usuarios.setNickname(edtCadNickname.getText().toString());
-                            usuarios.setEmail(edtCadEmail.getText().toString());
-                            usuarios.setSenha(edtCadSenha.getText().toString());
-                            usuarios.setAniversario(edtCadAniversario.getText().toString());
-                            //faz a checagem de qual botão de radio está selecionado para preencher o campo sexo
-                            if (rbFeminino.isChecked()) {
-                                usuarios.setSexo("Feminino");
-                                cadastrarUsuario();
-                            } else if(rbMasculino.isChecked()) {
-                                usuarios.setSexo("Masculino");
-                                cadastrarUsuario();
-                            }
-                            else{
-                                Toast.makeText(CadastroActivity.this, "Preencha todos os campos!",Toast.LENGTH_LONG).show();
-                            }
-                            //ou não né, a vida tá aí pra te trollar, testar suas crenças e
-                            //colocar à prova o raciocínio que você acha que desenvolveu
-
-
-                        }
-                    });
+                    usuarios = new Usuarios();
+                    //recupera todos os valores nos campos preenchidos na tela pelo usuário
+                    //e armazena no objeto de usuário
+                    usuarios.setNome(edtCadNome.getText().toString());
+                    usuarios.setNickname(edtCadNickname.getText().toString());
+                    usuarios.setEmail(edtCadEmail.getText().toString());
+                    usuarios.setSenha(edtCadSenha.getText().toString());
+                    usuarios.setAniversario(edtCadAniversario.getText().toString());
+                    //faz a checagem de qual botão de radio está selecionado para preencher o campo sexo
+                    if (rbFeminino.isChecked()) {
+                        usuarios.setSexo("Feminino");
+                        cadastrarUsuario();
+                    } else if(rbMasculino.isChecked()) {
+                        usuarios.setSexo("Masculino");
+                        cadastrarUsuario();
+                    }
+                    else{
+                        Toast.makeText(CadastroActivity.this, "Preencha todos os campos!",Toast.LENGTH_LONG).show();
+                    }
 
                 }
                 else{
@@ -191,6 +170,17 @@ public class CadastroActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar
+        switch (item.getItemId()) {
+            case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
+                startActivity(new Intent(CadastroActivity.this, LoginActivity.class));  //O efeito ao ser pressionado do botão (no caso abre a activity)
+                finishAffinity();  //Método para matar a activity e não deixa-lá indexada na pilhagem
+                break;
+            default:break;
+        }
+        return true;
     }
 
     public void abrirLoginUsuario(){
