@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_baralhos) {
-            abrirTelaBaralhos();
+            Toast.makeText(MainActivity.this, "Essa funcionalidade ainda não está disponível :(", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_favoritos) {
             Toast.makeText(MainActivity.this, "Essa funcionalidade ainda não está disponível :(", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_feedback) {

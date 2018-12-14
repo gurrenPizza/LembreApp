@@ -128,6 +128,8 @@ public class BaralhoActivity extends AppCompatActivity {
     private void abrirPratica() {
         Intent abrirPratica = new Intent(BaralhoActivity.this, PraticarBaralho.class);
         abrirPratica.putExtra(CONSTANTS.TITULO_BARALHO, baralho.getTitulo());
+        abrirPratica.putExtra(CONSTANTS.DESC_BARALHO, baralho.getDescricao());
+        abrirPratica.putExtra(CONSTANTS.CATEGORIA_BARALHO, baralho.getCategoria());
         startActivity(abrirPratica);
     }
 

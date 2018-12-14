@@ -33,7 +33,6 @@ public class PraticarBaralho extends AppCompatActivity {
 
     private Baralhos baralho;
     private ArrayList<Cartas> cartas;
-    private Cartas cartaNova;
     private DatabaseReference baralhoRef;
     private ValueEventListener valueEventListenerCartas;
 
@@ -59,9 +58,11 @@ public class PraticarBaralho extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             baralho.setTitulo(extras.getString(CONSTANTS.TITULO_BARALHO));
+            baralho.setCategoria(extras.getString(CONSTANTS.CATEGORIA_BARALHO));
+            baralho.setDescricao(extras.getString(CONSTANTS.DESC_BARALHO));
         }
 
-        //relacionado à action bar
+        //relacionado a action bar
         tbPraticar = (Toolbar) findViewById(R.id.tbPraticar);
         setSupportActionBar(tbPraticar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -72,7 +73,7 @@ public class PraticarBaralho extends AppCompatActivity {
 
         cartas = new ArrayList<Cartas>();
 
-        //fazer a consulta de quantas cartas tem e mostrar a primeira
+        //fazer a consulta de quantas cartas tem e arnmazená-las no arraylist "cartas"
 
         baralhoRef = ConfiguracaoFirebase.getFirebase().child("baralhos").child(extras.getString(CONSTANTS.TITULO_BARALHO)).child("cartas");
 
@@ -83,9 +84,11 @@ public class PraticarBaralho extends AppCompatActivity {
 
                 totalCartas = 0;
                 for (DataSnapshot dados : dataSnapshot.getChildren()) {
+
                     Cartas cartaDoBaralho = dados.getValue(Cartas.class);
                     cartas.add(cartaDoBaralho);
                     totalCartas++;
+
                 }
             }
 
@@ -95,14 +98,25 @@ public class PraticarBaralho extends AppCompatActivity {
             }
         };
 
-        progresso = 0;
+        progresso = 1;
         pbPraticar.setMax(totalCartas);
 
         txtCarta = (TextView) findViewById(R.id.txtCartaPratica);
         edtResposta = (EditText) findViewById(R.id.edtResposta);
         btnPraticar = (Button) findViewById(R.id.btnPraticar);
 
-        txtCarta.setText(cartas.get(progresso).getFrente());
+
+        if(cartas!= null && Integer.valueOf(cartas.size())!=0){
+            txtCarta.setText(cartas.get(progresso).getFrente());
+        }
+        else{
+            Toast.makeText(this, "Você precisa cadastrar as cartas antes de jogar!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, BaralhoActivity.class)
+                    .putExtra(CONSTANTS.TITULO_BARALHO, baralho.getTitulo())
+                    .putExtra(CONSTANTS.CATEGORIA_BARALHO, baralho.getCategoria())
+                    .putExtra(CONSTANTS.DESC_BARALHO, baralho.getDescricao()));
+        }
+
 
 
         btnPraticar.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +153,10 @@ public class PraticarBaralho extends AppCompatActivity {
 
         usuarioAtual = ConfiguracaoFirebase.getFirebaseAutenticacao().getCurrentUser();
         Toast.makeText(this, "Parabéns, você ganhou 15xp! Acertou " + acertos +  " vezes e da próxima vai lembrar ainda mais!", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(this, BaralhoActivity.class).putExtra(CONSTANTS.TITULO_BARALHO, baralho.getTitulo()));
+        startActivity(new Intent(this, BaralhoActivity.class)
+                .putExtra(CONSTANTS.TITULO_BARALHO, baralho.getTitulo())
+                .putExtra(CONSTANTS.CATEGORIA_BARALHO, baralho.getCategoria())
+                .putExtra(CONSTANTS.DESC_BARALHO, baralho.getDescricao()));
 
     }
 
