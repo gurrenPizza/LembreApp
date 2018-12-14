@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="88dp"
+    android:layout_height="94dp"
+    android:layout_margin="5dp"
+    android:background="@mipmap/ic_carta"
+    android:foregroundGravity="center"
+    android:paddingTop="36dp"
+    >
+
+    <TextView
+        android:id="@+id/txtFrenteCartaPequena"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="frente"
+        android:textAlignment="center"/>
+    <TextView
+        android:id="@+id/txtVersoCartaPequena"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="verso"
+        android:textAlignment="center"
+        android:visibility="gone"
+        />
+
+</LinearLayout>

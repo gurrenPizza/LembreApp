@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
+import com.ifrj.tcc.lembre.constantes.CONSTANTS;
 import com.ifrj.tcc.lembre.entidades.Baralhos;
 import com.ifrj.tcc.lembre.entidades.Usuarios;
 import com.ifrj.tcc.lembre.helper.Base64Custom;
@@ -150,9 +151,9 @@ public class CadastroBaralhoActivity extends AppCompatActivity {
 
     private void abrirTelaBaralho() {
         Intent abrirTelaBaralho = new Intent(CadastroBaralhoActivity.this, BaralhoActivity.class);
-        abrirTelaBaralho.putExtra("titulo_baralho", novoBaralho.getTitulo());
-        abrirTelaBaralho.putExtra("categoria_baralho", novoBaralho.getCategoria());
-        abrirTelaBaralho.putExtra("descricao_baralho", novoBaralho.getDescricao());
+        abrirTelaBaralho.putExtra(CONSTANTS.TITULO_BARALHO, novoBaralho.getTitulo());
+        abrirTelaBaralho.putExtra(CONSTANTS.CATEGORIA_BARALHO, novoBaralho.getCategoria());
+        abrirTelaBaralho.putExtra(CONSTANTS.DESC_BARALHO, novoBaralho.getDescricao());
         startActivity(abrirTelaBaralho);
         finish();
     }

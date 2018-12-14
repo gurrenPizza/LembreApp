@@ -2,22 +2,113 @@ package com.ifrj.tcc.lembre.activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
 import com.ifrj.tcc.lembre.R;
+import com.ifrj.tcc.lembre.adapter.CartasAdapter;
+import com.ifrj.tcc.lembre.constantes.CONSTANTS;
+import com.ifrj.tcc.lembre.entidades.Baralhos;
+import com.ifrj.tcc.lembre.entidades.Cartas;
+
+import java.util.ArrayList;
 
 public class BaralhoActivity extends AppCompatActivity {
+
+    private TextView txtTituloBaralho,
+                     txtDescBaralho,
+                     txtCategoriaBaralho;
+    private Toolbar tbBaralho;
+    private DatabaseReference baralhoRef;
+    private Baralhos baralho;
+    private ArrayList<Cartas> arrayCartas;
+    private ListView lvCartas;
+    private ArrayAdapter<Cartas> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baralho);
 
+        //relacionado à action bar
+        tbBaralho = (Toolbar) findViewById(R.id.tbBaralho);
+        setSupportActionBar(tbBaralho);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        tbBaralho.setPadding(0, getStatusBarHeight(), 0, 0);
 
+        txtTituloBaralho = (TextView) findViewById(R.id.txtTituloBaralho);
+        txtCategoriaBaralho = (TextView) findViewById(R.id.txtCategoriaBaralho);
+        txtDescBaralho = (TextView) findViewById(R.id.txtDescBaralho);
 
+        baralho = new Baralhos();
+        //recupera os valores passados pelas activities anteriores.
+        Bundle extras = getIntent().getExtras();
+        if(extras!=null) {
+            baralho.setTitulo(extras.getString(CONSTANTS.TITULO_BARALHO));
+            baralho.setDescricao(extras.getString(CONSTANTS.DESC_BARALHO));
+            baralho.setCategoria(extras.getString(CONSTANTS.CATEGORIA_BARALHO));
+        }
+
+        txtTituloBaralho.setText(baralho.getTitulo());
+        txtDescBaralho.setText(baralho.getDescricao());
+        txtCategoriaBaralho.setText(baralho.getCategoria());
+
+        arrayCartas = new ArrayList<Cartas>();
+        baralho.setCartas(arrayCartas);
+
+        adapter = new CartasAdapter(this, arrayCartas);
+        lvCartas = (ListView) findViewById(R.id.lvCartas);
+        lvCartas.setAdapter(adapter);
+
+        //fazer uma busca no firebase. enquanto houver cartas no baralho, deve-se repetir o processo abaixo.
+
+        baralhoRef = ConfiguracaoFirebase.getFirebase().child(extras.getString(CONSTANTS.TITULO_BARALHO)).child("cartas");
+
+        baralhoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayCartas.clear();
+
+                for(DataSnapshot dados: dataSnapshot.getChildren()){
+                    Cartas cartaDoBaralho = dataSnapshot.getValue(Cartas.class);
+
+                    arrayCartas.add(cartaDoBaralho);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabPraticar);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirPratica();
+            }
+        });
+    }
+
+    private void abrirPratica() {
 
     }
 

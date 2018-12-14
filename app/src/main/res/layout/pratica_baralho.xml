@@ -10,10 +10,12 @@
     android:background="@color/colorPrimary">
 
     <TextView
-        android:paddingTop="40dp"
+        android:paddingTop="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Frente_carta"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:background="@mipmap/ic_carta_grande"/>
 
@@ -22,8 +24,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
         android:hint="@string/tente_adivinhar_a_resposta"
-        
+        android:textColorHint="@color/colorAccent"
         android:textSize="14sp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/custom_button"
+        android:text="MANDA PRO PAI"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp" />
 
 </LinearLayout>

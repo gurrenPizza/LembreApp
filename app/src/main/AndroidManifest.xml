@@ -3,8 +3,8 @@
     package="com.ifrj.tcc.lembre">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -26,7 +26,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.CadastroActivity"
             android:parentActivityName=".activities.LoginActivity" />
@@ -37,20 +37,19 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.BaralhoActivity"
-            android:parentActivityName=".activities.MainActivity"
             android:label="Página de Baralho"
-            />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.EsqueceuSenhaActivity"
-            android:parentActivityName=".activities.LoginActivity"
             android:label="Esqueceu a senha"
-            />
+            android:parentActivityName=".activities.LoginActivity" />
         <activity
             android:name=".activities.BaralhosUsuarioActivity"
-            android:parentActivityName=".activities.MainActivity"/>
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.FeedbackActivity"
-            android:parentActivityName=".activities.MainActivity"/>
+            android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.PraticarBaralho"></activity>
     </application>
 
 </manifest>

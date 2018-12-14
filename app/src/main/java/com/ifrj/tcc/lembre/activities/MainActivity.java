@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.ifrj.tcc.lembre.adapter.BaralhosAdapter;
 import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
+import com.ifrj.tcc.lembre.constantes.CONSTANTS;
 import com.ifrj.tcc.lembre.entidades.Baralhos;
 import com.ifrj.tcc.lembre.R;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ListView listView;
     private ArrayList<Baralhos> baralhos;
     private ArrayAdapter<Baralhos> adapter;
+    private Baralhos abrirBaralho;
     private DatabaseReference firebase;
     private ValueEventListener valueEventListenerBaralhos;
 
@@ -70,7 +72,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                //o adapter capta as informações do item e converte para um objeto Baralho
+                //assim, é armazenado no objeto "abrirBaralho", onde suas informações podem ser manipuladas
+                abrirBaralho = adapter.getItem(i);
+                abrirTelaBaralho(abrirBaralho.getTitulo(), abrirBaralho.getDescricao(), abrirBaralho.getCategoria());
             }
         });
 
@@ -97,6 +102,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         };
 
     } //fim onCreate
+
+    private void abrirTelaBaralho(String tituloBaralho, String descBaralho, String categoriaBaralho) {
+        Intent abrirTelaBaralho = new Intent(MainActivity.this, BaralhoActivity.class);
+        abrirTelaBaralho.putExtra(CONSTANTS.TITULO_BARALHO, tituloBaralho);
+        abrirTelaBaralho.putExtra(CONSTANTS.DESC_BARALHO, descBaralho);
+        abrirTelaBaralho.putExtra(CONSTANTS.CATEGORIA_BARALHO, categoriaBaralho);
+        startActivity(abrirTelaBaralho);
+        finish();
+    }
 
     @Override
     protected void onStop() {
