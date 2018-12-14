@@ -5,8 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
+    android:theme="@style/AppTheme.NoActionBar"
     android:background="@color/colorPrimary"
-    tools:context=".Activities.LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tbEsqueci"
@@ -31,11 +32,11 @@
         android:layout_marginTop="10dp" />
 
         <EditText
-        android:id="@+id/edtLoginEmail"
+        android:id="@+id/edtEmailEsqueciSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:hint="@string/email_usado_no_cadastro"
         android:textColorHint="@color/colorAccent"
         />
 

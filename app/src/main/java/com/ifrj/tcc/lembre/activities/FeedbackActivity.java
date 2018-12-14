@@ -1,4 +1,4 @@
-package com.ifrj.tcc.lembre.Activities;
+package com.ifrj.tcc.lembre.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,10 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ifrj.tcc.lembre.Helper.Mail;
+import com.ifrj.tcc.lembre.helper.Mail;
 import com.ifrj.tcc.lembre.R;
 
 public class FeedbackActivity extends AppCompatActivity {

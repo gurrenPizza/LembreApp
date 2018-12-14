@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.CadastroActivity">
+    tools:context=".activities.CadastroActivity">
 
     <!-- Aqui vai ficar o código da toolbar !-->
 

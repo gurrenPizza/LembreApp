@@ -1,4 +1,4 @@
-package com.ifrj.tcc.lembre.Activities;
+package com.ifrj.tcc.lembre.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -15,7 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
-import com.ifrj.tcc.lembre.Entidades.Usuarios;
+import com.ifrj.tcc.lembre.entidades.Usuarios;
 import com.ifrj.tcc.lembre.R;
 
 public class LoginActivity extends AppCompatActivity {

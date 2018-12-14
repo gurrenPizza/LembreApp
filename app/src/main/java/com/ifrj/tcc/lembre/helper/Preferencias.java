@@ -1,4 +1,4 @@
-package com.ifrj.tcc.lembre.Helper;
+package com.ifrj.tcc.lembre.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,7 +7,7 @@ public class Preferencias {
 
     private Context context;
     private SharedPreferences preferences;
-    private String NOME_ARQUIVO = "agoravai.preferencias";
+    private String NOME_ARQUIVO = "lembre.preferencias";
     int MODE = 0;
     private SharedPreferences.Editor editor;
 

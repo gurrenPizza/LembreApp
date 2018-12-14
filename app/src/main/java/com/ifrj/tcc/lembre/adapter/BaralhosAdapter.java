@@ -1,4 +1,4 @@
-package com.ifrj.tcc.lembre.Adapter;
+package com.ifrj.tcc.lembre.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.ifrj.tcc.lembre.Entidades.Baralhos;
+import com.ifrj.tcc.lembre.entidades.Baralhos;
 import com.ifrj.tcc.lembre.R;
 
 import java.util.ArrayList;

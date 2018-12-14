@@ -1,4 +1,4 @@
-package com.ifrj.tcc.lembre.Helper;
+package com.ifrj.tcc.lembre.helper;
 
 import android.util.Base64;
 

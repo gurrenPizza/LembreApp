@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/AppTheme.NoActionBar"
     android:background="@color/colorAccent"
     android:orientation="vertical"
-    tools:context=".Activities.BaralhoActivity">
+    tools:context=".activities.BaralhoActivity">
 
 
     <android.support.v7.widget.Toolbar
@@ -41,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/categoria" />
+            android:text="Categoria" />
 
         <TextView
             android:id="@+id/txtDescBaralho"

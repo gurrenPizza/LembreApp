@@ -1,11 +1,10 @@
-package com.ifrj.tcc.lembre.Activities;
+package com.ifrj.tcc.lembre.activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -23,9 +23,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.ifrj.tcc.lembre.Adapter.BaralhosAdapter;
+import com.ifrj.tcc.lembre.adapter.BaralhosAdapter;
 import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
-import com.ifrj.tcc.lembre.Entidades.Baralhos;
+import com.ifrj.tcc.lembre.entidades.Baralhos;
 import com.ifrj.tcc.lembre.R;
 
 import java.util.ArrayList;
@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setPadding(0, getStatusBarHeight(), 0, 0);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddBaralho);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +67,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listView = findViewById(R.id.lvPrincipal);
         adapter = new BaralhosAdapter(this,baralhos);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
 
         firebase = ConfiguracaoFirebase.getFirebase().child("baralhos");
 

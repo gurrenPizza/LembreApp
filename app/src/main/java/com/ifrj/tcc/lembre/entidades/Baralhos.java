@@ -1,4 +1,4 @@
-package com.ifrj.tcc.lembre.Entidades;
+package com.ifrj.tcc.lembre.entidades;
 
 import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
 import com.google.firebase.database.DatabaseReference;
@@ -11,6 +11,7 @@ public class Baralhos {
     private String descricao;
     private String categoria;
     private String autor;
+    private ArrayList<Cartas> cartas;
 
     public Baralhos() {    }
 
@@ -51,4 +52,11 @@ public class Baralhos {
         this.categoria = categoria;
     }
 
+    public ArrayList<Cartas> getCartas() {
+        return cartas;
+    }
+
+    public void setCartas(ArrayList<Cartas> cartas) {
+        this.cartas = cartas;
+    }
 }

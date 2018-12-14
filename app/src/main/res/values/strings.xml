@@ -27,6 +27,7 @@
     <string name="categoria">Categoria: </string>
     <string name="recuperar_conta">recuperar conta</string>
     <string name="enviar_comentario">Enviar feedback</string>
+    <string name="email_usado_no_cadastro">Email usado no cadastro</string>
 
     <string-array name="categorias">
         <item>Física</item>

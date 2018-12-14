@@ -1,4 +1,4 @@
-package com.ifrj.tcc.lembre.Activities;
+package com.ifrj.tcc.lembre.activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -21,9 +21,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
-import com.ifrj.tcc.lembre.Entidades.Baralhos;
-import com.ifrj.tcc.lembre.Entidades.Usuarios;
-import com.ifrj.tcc.lembre.Helper.Base64Custom;
+import com.ifrj.tcc.lembre.entidades.Baralhos;
+import com.ifrj.tcc.lembre.entidades.Usuarios;
+import com.ifrj.tcc.lembre.helper.Base64Custom;
 import com.ifrj.tcc.lembre.R;
 
 public class CadastroBaralhoActivity extends AppCompatActivity {
@@ -32,10 +32,11 @@ public class CadastroBaralhoActivity extends AppCompatActivity {
     private Spinner spCategorias;
     private EditText edtCadTituloBaralho, edtCadDescBaralho;
     private Button btnCadBaralho;
-    private Baralhos baralho;
-    private DatabaseReference firebase;
-    private FirebaseUser user;
+    private Baralhos novoBaralho;
+    private DatabaseReference userRef;
+    private FirebaseUser firebaseUser;
     private Usuarios usuario;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,25 +61,25 @@ public class CadastroBaralhoActivity extends AppCompatActivity {
         btnCadBaralho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                baralho = new Baralhos();
+                novoBaralho = new Baralhos();
                 usuario =  new Usuarios();
                 String codUsuario="";
-                user = FirebaseAuth.getInstance().getCurrentUser();
-                if(user!=null){
-                    codUsuario = user.getEmail();
+                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                if(firebaseUser !=null){
+                    codUsuario = firebaseUser.getEmail();
                     codUsuario = Base64Custom.codificarString(codUsuario);
                 }else{
                     Toast.makeText(CadastroBaralhoActivity.this, "Usuário não está logado!",Toast.LENGTH_LONG).show();
                 }
 
-                firebase = ConfiguracaoFirebase.getFirebase().child("usuario");
+                userRef = ConfiguracaoFirebase.getFirebase().child("usuario");
 
-                firebase.child(codUsuario).addValueEventListener(new ValueEventListener() {
+                userRef.child(codUsuario).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Usuarios usuarios = dataSnapshot.getValue(Usuarios.class);
-
-                        usuario = usuarios;
+                        usuario = dataSnapshot.getValue(Usuarios.class);
+                        novoBaralho.setAutor(usuario.getNickname());
+                        Toast.makeText(CadastroBaralhoActivity.this, usuario.getNickname(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -88,12 +89,11 @@ public class CadastroBaralhoActivity extends AppCompatActivity {
                 });
 
 
-                baralho.setTitulo(edtCadTituloBaralho.getText().toString());
-                baralho.setDescricao(edtCadDescBaralho.getText().toString());
-                baralho.setCategoria(spCategorias.getSelectedItem().toString());
-                baralho.setAutor(usuario.getNickname());
+                novoBaralho.setTitulo(edtCadTituloBaralho.getText().toString());
+                novoBaralho.setDescricao(edtCadDescBaralho.getText().toString());
+                novoBaralho.setCategoria(spCategorias.getSelectedItem().toString());
 
-                salvarBaralho(baralho);
+                salvarBaralho(novoBaralho);
             }
         });
 
@@ -137,9 +137,9 @@ public class CadastroBaralhoActivity extends AppCompatActivity {
 
     private boolean salvarBaralho(Baralhos baralho){
         try{
-            firebase = ConfiguracaoFirebase.getFirebase().child("baralhos");
-            firebase.child(baralho.getTitulo()).setValue(baralho);
-            Toast.makeText(CadastroBaralhoActivity.this, "BaralhoActivity criado com sucesso!",Toast.LENGTH_LONG).show();
+            userRef = ConfiguracaoFirebase.getFirebase().child("baralhos");
+            userRef.child(baralho.getTitulo()).setValue(baralho);
+            Toast.makeText(CadastroBaralhoActivity.this, "Baralho criado com sucesso!",Toast.LENGTH_LONG).show();
             abrirTelaBaralho();
             return true;
         }catch(Exception e){
@@ -150,6 +150,9 @@ public class CadastroBaralhoActivity extends AppCompatActivity {
 
     private void abrirTelaBaralho() {
         Intent abrirTelaBaralho = new Intent(CadastroBaralhoActivity.this, BaralhoActivity.class);
+        abrirTelaBaralho.putExtra("titulo_baralho", novoBaralho.getTitulo());
+        abrirTelaBaralho.putExtra("categoria_baralho", novoBaralho.getCategoria());
+        abrirTelaBaralho.putExtra("descricao_baralho", novoBaralho.getDescricao());
         startActivity(abrirTelaBaralho);
         finish();
     }

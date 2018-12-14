@@ -1,10 +1,7 @@
-package com.ifrj.tcc.lembre.Helper;
+package com.ifrj.tcc.lembre.helper;
 import java.util.Date;
 import java.util.Properties;
 import javax.activation.CommandMap;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.activation.MailcapCommandMap;
 import javax.mail.BodyPart;
 import javax.mail.Message;

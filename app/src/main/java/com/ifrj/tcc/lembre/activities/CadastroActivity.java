@@ -1,4 +1,4 @@
-package com.ifrj.tcc.lembre.Activities;
+package com.ifrj.tcc.lembre.activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -20,16 +20,11 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
-import com.ifrj.tcc.lembre.Entidades.Usuarios;
-import com.ifrj.tcc.lembre.Helper.Base64Custom;
-import com.ifrj.tcc.lembre.Helper.Preferencias;
+import com.ifrj.tcc.lembre.entidades.Usuarios;
+import com.ifrj.tcc.lembre.helper.Base64Custom;
+import com.ifrj.tcc.lembre.helper.Preferencias;
 import com.ifrj.tcc.lembre.R;
 
 public class CadastroActivity extends AppCompatActivity {

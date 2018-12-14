@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/login_label"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,21 +24,33 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activities.CadastroActivity"
-            android:parentActivityName=".Activities.LoginActivity" />
+            android:name=".activities.CadastroActivity"
+            android:parentActivityName=".activities.LoginActivity" />
         <activity
-            android:name=".Activities.CadastroBaralhoActivity"
+            android:name=".activities.CadastroBaralhoActivity"
             android:label="Criar um Baralho"
-            android:parentActivityName=".Activities.MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.BaralhoActivity" />
-        <activity android:name=".Activities.EsqueceuSenhaActivity" />
-        <activity android:name=".Activities.BaralhosUsuarioActivity" />
-        <activity android:name=".Activities.FeedbackActivity"></activity>
+        <activity
+            android:name=".activities.BaralhoActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:label="Página de Baralho"
+            />
+        <activity
+            android:name=".activities.EsqueceuSenhaActivity"
+            android:parentActivityName=".activities.LoginActivity"
+            android:label="Esqueceu a senha"
+            />
+        <activity
+            android:name=".activities.BaralhosUsuarioActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+        <activity
+            android:name=".activities.FeedbackActivity"
+            android:parentActivityName=".activities.MainActivity"/>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.ifrj.tcc.lembre.Activities;
+package com.ifrj.tcc.lembre.activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -8,15 +8,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
 import com.ifrj.tcc.lembre.R;
 
 public class EsqueceuSenhaActivity extends AppCompatActivity {
 
     private Button btnLembrar;
     private Toolbar tbEsqueci;
+    private EditText edtEmailEsqueciSenha;
     private FirebaseAuth auth;
 
     @Override
@@ -30,10 +33,19 @@ public class EsqueceuSenhaActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         tbEsqueci.setPadding(0, getStatusBarHeight(), 0, 0);
 
+        edtEmailEsqueciSenha = (EditText) findViewById(R.id.edtEmailEsqueciSenha);
+
         btnLembrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                if(!edtEmailEsqueciSenha.getText().toString().equals("")) {
+                    auth = ConfiguracaoFirebase.getFirebaseAutenticacao();
+
+                    auth.sendPasswordResetEmail(edtEmailEsqueciSenha.getText().toString());
+                }else{
+                    Toast.makeText(EsqueceuSenhaActivity.this, "Preencha o campo de email!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
