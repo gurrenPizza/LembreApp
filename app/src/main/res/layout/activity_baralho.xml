@@ -69,8 +69,9 @@
                 android:layout_width="88dp"
                 android:layout_height="94dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/cartas"
+                android:background="@mipmap/ic_carta"
                 android:foregroundGravity="center"
+                android:paddingTop="36dp"
                 android:text="carta_1"
                 android:textAlignment="center" />
 
@@ -78,7 +79,8 @@
                 android:layout_width="88dp"
                 android:layout_height="94dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/cartas"
+                android:paddingTop="36dp"
+                android:background="@mipmap/ic_carta"
                 android:foregroundGravity="center"
                 android:text="carta_2"
                 android:textAlignment="center" />
@@ -86,8 +88,9 @@
             <TextView
                 android:layout_width="88dp"
                 android:layout_height="94dp"
+                android:paddingTop="36dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/cartas"
+                android:background="@mipmap/ic_carta"
                 android:foregroundGravity="center"
                 android:text="carta_2"
                 android:textAlignment="center" />
