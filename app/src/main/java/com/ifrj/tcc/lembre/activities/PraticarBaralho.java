@@ -90,6 +90,19 @@ public class PraticarBaralho extends AppCompatActivity {
                     totalCartas++;
 
                 }
+
+                if(cartas != null && cartas.size()!=0){
+                    txtCarta.setText(cartas.get(progresso).getFrente());
+                }
+                else{
+                    Toast.makeText(PraticarBaralho.this, "Você precisa cadastrar as cartas antes de jogar!",
+                            Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(PraticarBaralho.this, BaralhoActivity.class)
+                            .putExtra(CONSTANTS.TITULO_BARALHO, baralho.getTitulo())
+                            .putExtra(CONSTANTS.CATEGORIA_BARALHO, baralho.getCategoria())
+                            .putExtra(CONSTANTS.DESC_BARALHO, baralho.getDescricao()));
+                }
+
             }
 
             @Override
@@ -98,31 +111,21 @@ public class PraticarBaralho extends AppCompatActivity {
             }
         };
 
-        progresso = 1;
+        baralhoRef.addValueEventListener(valueEventListenerCartas);
+
+        progresso = 0;
         pbPraticar.setMax(totalCartas);
 
         txtCarta = (TextView) findViewById(R.id.txtCartaPratica);
         edtResposta = (EditText) findViewById(R.id.edtResposta);
         btnPraticar = (Button) findViewById(R.id.btnPraticar);
 
-
-        if(cartas != null && Integer.valueOf(cartas.size())!=0){
-            txtCarta.setText(cartas.get(progresso).getFrente());
-        }
-        else{
-            Toast.makeText(this, "Você precisa cadastrar as cartas antes de jogar!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, BaralhoActivity.class)
-                    .putExtra(CONSTANTS.TITULO_BARALHO, baralho.getTitulo())
-                    .putExtra(CONSTANTS.CATEGORIA_BARALHO, baralho.getCategoria())
-                    .putExtra(CONSTANTS.DESC_BARALHO, baralho.getDescricao()));
-        }
-
-
+        Toast.makeText(PraticarBaralho.this, String.valueOf(cartas.size()), Toast.LENGTH_SHORT).show();
 
         btnPraticar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (progresso == totalCartas) {
+                if (progresso+1 == cartas.size()) {
                     terminarPratica();
                 } else {
 
@@ -165,7 +168,6 @@ public class PraticarBaralho extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        baralhoRef.addValueEventListener(valueEventListenerCartas);
     }
 
     @Override
