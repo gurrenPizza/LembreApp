@@ -45,6 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="frente_carta"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:gravity="center"
             android:background="@mipmap/ic_carta_grande"/>
 

@@ -106,7 +106,7 @@ public class PraticarBaralho extends AppCompatActivity {
         btnPraticar = (Button) findViewById(R.id.btnPraticar);
 
 
-        if(cartas!= null && Integer.valueOf(cartas.size())!=0){
+        if(cartas != null && Integer.valueOf(cartas.size())!=0){
             txtCarta.setText(cartas.get(progresso).getFrente());
         }
         else{
@@ -126,18 +126,20 @@ public class PraticarBaralho extends AppCompatActivity {
                     terminarPratica();
                 } else {
 
-
                     if (!edtResposta.equals("")) {
                         if (edtResposta.equals(cartas.get(progresso).getVerso())) {
                             progresso++;
                             acertos++;
                             pbPraticar.setProgress(progresso);
                             Toast.makeText(PraticarBaralho.this, "Você acertou!! :D", Toast.LENGTH_SHORT).show();
-
+                            txtCarta.setText(cartas.get(progresso).getFrente());
+                            pbPraticar.setProgress(progresso);
                         } else {
                             progresso++;
                             erros++;
                             Toast.makeText(PraticarBaralho.this, "Você errou!! :(", Toast.LENGTH_SHORT).show();
+                            txtCarta.setText(cartas.get(progresso).getFrente());
+                            pbPraticar.setProgress(progresso);
                         }
                     } else {
                         Toast.makeText(PraticarBaralho.this, "Vai responder não?", Toast.LENGTH_SHORT).show();
