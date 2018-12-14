@@ -49,7 +49,8 @@
         <activity
             android:name=".activities.FeedbackActivity"
             android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.PraticarBaralho"></activity>
+        <activity android:name=".activities.PraticarBaralho" />
+        <activity android:name=".activities.CadastroCartasActivity"></activity>
     </application>
 
 </manifest>

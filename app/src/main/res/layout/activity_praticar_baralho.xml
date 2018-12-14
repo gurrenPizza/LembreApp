@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.PraticarBaralho">
+    tools:context=".activities.PraticarBaralho"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbPraticar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/pbPraticar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/txtCadastrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Tente adivinhar o outro lado da carta!"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/txtCartaPratica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="frente_carta"
+            android:gravity="center"
+            android:background="@mipmap/ic_carta_grande"/>
+
+        <EditText
+            android:id="@+id/edtResposta"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorAccent"
+            android:hint="Sua resposta..."/>
+        <Button
+            android:id="@+id/btnPraticar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:text="DUVIDEI"/>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

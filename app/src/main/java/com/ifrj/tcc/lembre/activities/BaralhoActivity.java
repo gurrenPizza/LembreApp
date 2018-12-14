@@ -35,11 +35,13 @@ public class BaralhoActivity extends AppCompatActivity {
                      txtDescBaralho,
                      txtCategoriaBaralho;
     private Toolbar tbBaralho;
+
     private DatabaseReference baralhoRef;
     private Baralhos baralho;
     private ArrayList<Cartas> arrayCartas;
     private ListView lvCartas;
     private ArrayAdapter<Cartas> adapter;
+    private ValueEventListener valueEventListenerCartas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class BaralhoActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         tbBaralho.setPadding(0, getStatusBarHeight(), 0, 0);
 
+        //Identifica os campos de textos que vão ser preenchidos com o Bundle
         txtTituloBaralho = (TextView) findViewById(R.id.txtTituloBaralho);
         txtCategoriaBaralho = (TextView) findViewById(R.id.txtCategoriaBaralho);
         txtDescBaralho = (TextView) findViewById(R.id.txtDescBaralho);
@@ -71,24 +74,22 @@ public class BaralhoActivity extends AppCompatActivity {
         txtCategoriaBaralho.setText(baralho.getCategoria());
 
         arrayCartas = new ArrayList<Cartas>();
-        baralho.setCartas(arrayCartas);
 
-        adapter = new CartasAdapter(this, arrayCartas);
         lvCartas = (ListView) findViewById(R.id.lvCartas);
+        adapter = new CartasAdapter(this, arrayCartas);
         lvCartas.setAdapter(adapter);
 
-        //fazer uma busca no firebase. enquanto houver cartas no baralho, deve-se repetir o processo abaixo.
+        //a linha abaixo faz referência ao nó das cartas armazenadas no nó do baralho clicado na
+        //activity anterior, que também está dentro do nó "baralhos"
+        baralhoRef = ConfiguracaoFirebase.getFirebase().child("baralhos").child(extras.getString(CONSTANTS.TITULO_BARALHO)).child("cartas");
 
-        baralhoRef = ConfiguracaoFirebase.getFirebase().child(extras.getString(CONSTANTS.TITULO_BARALHO)).child("cartas");
-
-        baralhoRef.addValueEventListener(new ValueEventListener() {
+        valueEventListenerCartas = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayCartas.clear();
-
+                arrayCartas.add(new Cartas("adicionar"));
                 for(DataSnapshot dados: dataSnapshot.getChildren()){
-                    Cartas cartaDoBaralho = dataSnapshot.getValue(Cartas.class);
-
+                    Cartas cartaDoBaralho = dados.getValue(Cartas.class);
                     arrayCartas.add(cartaDoBaralho);
                 }
                 adapter.notifyDataSetChanged();
@@ -96,9 +97,12 @@ public class BaralhoActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(BaralhoActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });
+        };
+
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabPraticar);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,10 +110,25 @@ public class BaralhoActivity extends AppCompatActivity {
                 abrirPratica();
             }
         });
+
+    } //fim onCreate
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        baralhoRef.addValueEventListener(valueEventListenerCartas);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        baralhoRef.removeEventListener(valueEventListenerCartas);
     }
 
     private void abrirPratica() {
-
+        Intent abrirPratica = new Intent(BaralhoActivity.this, PraticarBaralho.class);
+        abrirPratica.putExtra(CONSTANTS.TITULO_BARALHO, baralho.getTitulo());
+        startActivity(abrirPratica);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar

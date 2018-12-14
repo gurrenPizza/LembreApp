@@ -7,6 +7,10 @@ public class Cartas {
 
     public Cartas() {    }
 
+    public Cartas(String frente) {
+        this.frente = frente;
+    }
+
     public String getFrente() {
         return frente;
     }

@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listView = findViewById(R.id.lvPrincipal);
         adapter = new BaralhosAdapter(this,baralhos);
         listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
