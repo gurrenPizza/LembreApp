@@ -4,13 +4,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,15 +32,16 @@ public class BaralhoActivity extends AppCompatActivity {
 
     private TextView txtTituloBaralho,
                      txtDescBaralho,
-                     txtCategoriaBaralho;
+                     txtCategoriaBaralho,
+                     txtAutorBaralho;
     private Toolbar tbBaralho;
 
-    private DatabaseReference baralhoRef;
+    private DatabaseReference cartaRef, baralhoRef;
     private Baralhos baralho;
     private ArrayList<Cartas> arrayCartas;
     private ListView lvCartas;
     private ArrayAdapter<Cartas> adapter;
-    private ValueEventListener valueEventListenerCartas;
+    private ValueEventListener valueEventListenerCartas, valueEventListenerBaralho;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,7 @@ public class BaralhoActivity extends AppCompatActivity {
         txtTituloBaralho = (TextView) findViewById(R.id.txtTituloBaralho);
         txtCategoriaBaralho = (TextView) findViewById(R.id.txtCategoriaBaralho);
         txtDescBaralho = (TextView) findViewById(R.id.txtDescBaralho);
+        txtAutorBaralho = (TextView) findViewById(R.id.txtAutorBaralho);
 
         baralho = new Baralhos();
         //recupera os valores passados pelas activities anteriores.
@@ -69,9 +70,26 @@ public class BaralhoActivity extends AppCompatActivity {
             baralho.setCategoria(extras.getString(CONSTANTS.CATEGORIA_BARALHO));
         }
 
-        txtTituloBaralho.setText(baralho.getTitulo());
-        txtDescBaralho.setText(baralho.getDescricao());
-        txtCategoriaBaralho.setText(baralho.getCategoria());
+        baralhoRef = ConfiguracaoFirebase.getFirebase().child("baralhos").child(extras.getString(CONSTANTS.TITULO_BARALHO));
+
+        valueEventListenerBaralho = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                baralho = dataSnapshot.getValue(Baralhos.class);
+
+                txtTituloBaralho.setText(baralho.getTitulo());
+                txtAutorBaralho.setText(baralho.getAutor());
+                txtDescBaralho.setText(baralho.getDescricao());
+                txtCategoriaBaralho.setText(baralho.getCategoria());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(BaralhoActivity.this, "Erro! " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
 
         arrayCartas = new ArrayList<Cartas>();
 
@@ -81,7 +99,7 @@ public class BaralhoActivity extends AppCompatActivity {
 
         //a linha abaixo faz referência ao nó das cartas armazenadas no nó do baralho clicado na
         //activity anterior, que também está dentro do nó "baralhos"
-        baralhoRef = ConfiguracaoFirebase.getFirebase().child("baralhos").child(extras.getString(CONSTANTS.TITULO_BARALHO)).child("cartas");
+        cartaRef = ConfiguracaoFirebase.getFirebase().child("baralhos").child(extras.getString(CONSTANTS.TITULO_BARALHO)).child("cartas");
 
         valueEventListenerCartas = new ValueEventListener() {
             @Override
@@ -101,7 +119,14 @@ public class BaralhoActivity extends AppCompatActivity {
             }
         };
 
-
+        lvCartas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i == 0){
+                    abrirCadastroCartas();
+                }
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabPraticar);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -113,24 +138,32 @@ public class BaralhoActivity extends AppCompatActivity {
 
     } //fim onCreate
 
+    private void abrirCadastroCartas() {
+        startActivity(new Intent(this, CadastroCartasActivity.class)
+                .putExtra(CONSTANTS.TITULO_BARALHO, baralho.getTitulo())
+                .putExtra(CONSTANTS.CATEGORIA_BARALHO, baralho.getCategoria())
+                .putExtra(CONSTANTS.DESC_BARALHO, baralho.getDescricao()));
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-        baralhoRef.addValueEventListener(valueEventListenerCartas);
+        cartaRef.addValueEventListener(valueEventListenerCartas);
+        baralhoRef.addValueEventListener(valueEventListenerBaralho);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        baralhoRef.removeEventListener(valueEventListenerCartas);
+        cartaRef.removeEventListener(valueEventListenerCartas);
+        baralhoRef.removeEventListener(valueEventListenerBaralho);
     }
 
     private void abrirPratica() {
-        Intent abrirPratica = new Intent(BaralhoActivity.this, PraticarBaralho.class);
-        abrirPratica.putExtra(CONSTANTS.TITULO_BARALHO, baralho.getTitulo());
-        abrirPratica.putExtra(CONSTANTS.DESC_BARALHO, baralho.getDescricao());
-        abrirPratica.putExtra(CONSTANTS.CATEGORIA_BARALHO, baralho.getCategoria());
-        startActivity(abrirPratica);
+        startActivity(new Intent(this, PraticarBaralho.class)
+                .putExtra(CONSTANTS.TITULO_BARALHO, baralho.getTitulo())
+                .putExtra(CONSTANTS.CATEGORIA_BARALHO, baralho.getCategoria())
+                .putExtra(CONSTANTS.DESC_BARALHO, baralho.getDescricao()));
     }
 
     public boolean onOptionsItemSelected(MenuItem item) { //Botão adicional na ToolBar

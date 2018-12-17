@@ -29,10 +29,16 @@
     <string name="enviar_comentario">Enviar feedback</string>
     <string name="email_usado_no_cadastro">Email usado no cadastro</string>
     <string name="tente_adivinhar_a_resposta">Tente adivinhar a resposta...</string>
+    <string name="verso">Verso</string>
+    <string name="frente">Frente</string>
+    <string name="cadastre_aqui_as_cartas_para_o_baralho">Cadastre aqui as cartas para o baralho!</string>
+    <string name="por">Por </string>
 
     <string-array name="categorias">
         <item>Física</item>
         <item>Química</item>
         <item>Matemática</item>
+        <item>História</item>
+        <item>Línguas</item>
     </string-array>
 </resources>

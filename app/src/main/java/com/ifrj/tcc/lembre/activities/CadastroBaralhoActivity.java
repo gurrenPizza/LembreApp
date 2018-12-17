@@ -78,26 +78,23 @@ public class CadastroBaralhoActivity extends AppCompatActivity {
                 userRef.child(codUsuario).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                         usuario = dataSnapshot.getValue(Usuarios.class);
                         novoBaralho.setAutor(usuario.getNickname());
-                        Toast.makeText(CadastroBaralhoActivity.this, usuario.getNickname(), Toast.LENGTH_SHORT).show();
+                        novoBaralho.setTitulo(edtCadTituloBaralho.getText().toString().trim());
+                        novoBaralho.setDescricao(edtCadDescBaralho.getText().toString().trim());
+                        novoBaralho.setCategoria(spCategorias.getSelectedItem().toString());
+
+                        salvarBaralho(novoBaralho);
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(CadastroBaralhoActivity.this, "Não rolou",Toast.LENGTH_LONG).show();
+                        Toast.makeText(CadastroBaralhoActivity.this, "Não rolou: " + databaseError.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 });
-
-
-                novoBaralho.setTitulo(edtCadTituloBaralho.getText().toString());
-                novoBaralho.setDescricao(edtCadDescBaralho.getText().toString());
-                novoBaralho.setCategoria(spCategorias.getSelectedItem().toString());
-
-                salvarBaralho(novoBaralho);
             }
         });
-
     }
 
     @Override
@@ -138,6 +135,7 @@ public class CadastroBaralhoActivity extends AppCompatActivity {
 
     private boolean salvarBaralho(Baralhos baralho){
         try{
+            baralho.setQuantCartas(0);
             userRef = ConfiguracaoFirebase.getFirebase().child("baralhos");
             userRef.child(baralho.getTitulo()).setValue(baralho);
             Toast.makeText(CadastroBaralhoActivity.this, "Baralho criado com sucesso!",Toast.LENGTH_LONG).show();
@@ -150,11 +148,10 @@ public class CadastroBaralhoActivity extends AppCompatActivity {
     }
 
     private void abrirTelaBaralho() {
-        Intent abrirTelaBaralho = new Intent(CadastroBaralhoActivity.this, BaralhoActivity.class);
-        abrirTelaBaralho.putExtra(CONSTANTS.TITULO_BARALHO, novoBaralho.getTitulo());
-        abrirTelaBaralho.putExtra(CONSTANTS.CATEGORIA_BARALHO, novoBaralho.getCategoria());
-        abrirTelaBaralho.putExtra(CONSTANTS.DESC_BARALHO, novoBaralho.getDescricao());
-        startActivity(abrirTelaBaralho);
+        startActivity(new Intent(this, BaralhoActivity.class)
+                .putExtra(CONSTANTS.TITULO_BARALHO, novoBaralho.getTitulo())
+                .putExtra(CONSTANTS.CATEGORIA_BARALHO, novoBaralho.getCategoria())
+                .putExtra(CONSTANTS.DESC_BARALHO, novoBaralho.getDescricao()));
         finish();
     }
 

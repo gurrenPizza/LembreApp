@@ -26,7 +26,6 @@ public class Usuarios {
         DatabaseReference referenciaDatabase = ConfiguracaoFirebase.getFirebase();
         this.senha="";
         referenciaDatabase.child("usuario").child(String.valueOf(getId())).setValue(this);
-
     }
 
     @Exclude

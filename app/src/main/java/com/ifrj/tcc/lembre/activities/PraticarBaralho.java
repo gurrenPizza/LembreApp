@@ -40,6 +40,7 @@ public class PraticarBaralho extends AppCompatActivity {
     private int acertos;
     private int erros;
     private int progresso;
+    private boolean taVirada;
     private ProgressBar pbPraticar;
     private Button btnPraticar;
     private EditText edtResposta;
@@ -120,8 +121,6 @@ public class PraticarBaralho extends AppCompatActivity {
         edtResposta = (EditText) findViewById(R.id.edtResposta);
         btnPraticar = (Button) findViewById(R.id.btnPraticar);
 
-        Toast.makeText(PraticarBaralho.this, String.valueOf(cartas.size()), Toast.LENGTH_SHORT).show();
-
         btnPraticar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,7 +161,7 @@ public class PraticarBaralho extends AppCompatActivity {
                 .putExtra(CONSTANTS.TITULO_BARALHO, baralho.getTitulo())
                 .putExtra(CONSTANTS.CATEGORIA_BARALHO, baralho.getCategoria())
                 .putExtra(CONSTANTS.DESC_BARALHO, baralho.getDescricao()));
-
+        finishAffinity();
     }
 
     @Override

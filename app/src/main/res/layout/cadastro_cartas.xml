@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/layout_num_carta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Carta 1"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/layout_frente_carta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/frente"
+        android:textColorHint="@color/colorAccent"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/layout_verso_carta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/verso"
+        android:textColorHint="@color/colorAccent"
+        android:textSize="16sp" />
+
+</LinearLayout>

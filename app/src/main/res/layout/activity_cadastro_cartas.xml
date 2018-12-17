@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
     tools:context=".activities.CadastroCartasActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbCadCartas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cadastre_aqui_as_cartas_para_o_baralho"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="Carta 1"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edtCadFrenteCarta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/frente"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edtCadVersoCarta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/verso"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnCadastrarCarta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/custom_button"
+                android:text="adicionar cartas ao baralho"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+</LinearLayout>

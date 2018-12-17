@@ -38,6 +38,15 @@
         android:paddingRight="35dp">
 
         <TextView
+            android:id="@+id/txtAutorBaralho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="30dp"
+            android:text="Autor"
+            android:textAlignment="textEnd"/>
+
+        <TextView
             android:id="@+id/txtCategoriaBaralho"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="DESC_BARALHO" />
+            android:text="Descrição" />
 
         <TextView
             android:layout_width="match_parent"
@@ -57,25 +66,48 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:text="@string/cartas"
+            android:textStyle="bold"
             android:textSize="17dp" />
 
         <ListView
             android:id="@+id/lvCartas"
             android:layout_width="match_parent"
-            android:layout_height="290dp"
+            android:layout_height="252dp"
             android:layout_gravity="center|top"
-            android:foregroundGravity="center"/>
+            android:foregroundGravity="center" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabPraticar"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:backgroundTint="@color/pink"
-            android:clickable="true"
-            android:focusable="true"
-            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:text="JOGAR!"
+                android:gravity="center_horizontal|center"
+                android:textColor="@color/pink"
+                android:layout_marginRight="80dp"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_row="0"
+                android:layout_column="0" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabPraticar"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/pink"
+                android:clickable="true"
+                android:focusable="true"
+                app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+
+        </FrameLayout>
+
+
     </LinearLayout>
-
 </LinearLayout>

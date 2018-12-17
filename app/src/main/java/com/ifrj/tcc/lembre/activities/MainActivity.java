@@ -105,11 +105,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     } //fim onCreate
 
     private void abrirTelaBaralho(String tituloBaralho, String descBaralho, String categoriaBaralho) {
-        Intent abrirTelaBaralho = new Intent(MainActivity.this, BaralhoActivity.class);
-        abrirTelaBaralho.putExtra(CONSTANTS.TITULO_BARALHO, tituloBaralho);
-        abrirTelaBaralho.putExtra(CONSTANTS.DESC_BARALHO, descBaralho);
-        abrirTelaBaralho.putExtra(CONSTANTS.CATEGORIA_BARALHO, categoriaBaralho);
-        startActivity(abrirTelaBaralho);
+        startActivity(new Intent(this, BaralhoActivity.class)
+                .putExtra(CONSTANTS.TITULO_BARALHO, tituloBaralho)
+                .putExtra(CONSTANTS.CATEGORIA_BARALHO, categoriaBaralho)
+                .putExtra(CONSTANTS.DESC_BARALHO, descBaralho));
         finish();
     }
 

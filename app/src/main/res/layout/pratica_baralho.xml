@@ -3,11 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="35dp"
     android:theme="@style/AppTheme.NoActionBar"
-    android:gravity="center"
     android:orientation="vertical"
     android:background="@color/colorPrimary">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbBaralho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:gravity="center">
+
+    <ProgressBar
+        android:id="@+id/pbPraticar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"/>
+
 
     <TextView
         android:paddingTop="100dp"
@@ -35,8 +56,10 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/custom_button"
-        android:text="MANDA PRO PAI"
+        android:text="adivinhar"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
+
+    </LinearLayout>
 
 </LinearLayout>

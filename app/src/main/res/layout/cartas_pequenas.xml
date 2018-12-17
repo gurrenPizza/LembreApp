@@ -2,8 +2,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
+    android:layout_gravity="center"
     android:layout_width="88dp"
-    android:layout_height="94dp"
+    android:layout_height="100dp"
     android:layout_margin="5dp"
     android:background="@mipmap/ic_carta"
     android:foregroundGravity="center"

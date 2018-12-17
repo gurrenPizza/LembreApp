@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(!edtEmail.getText().toString().equals("") && !edtSenha.getText().toString().equals("")){
                     usuario = new Usuarios();
 
-                    usuario.setEmail(edtEmail.getText().toString());
+                    usuario.setEmail(edtEmail.getText().toString().trim());
                     usuario.setSenha(edtSenha.getText().toString());
 
                     validarLogin();

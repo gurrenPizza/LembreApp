@@ -49,6 +49,7 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
+        //relativo à toolbar
         tbCadastro = (android.support.v7.widget.Toolbar) findViewById(R.id.tbCadastro);
         setSupportActionBar(tbCadastro);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -78,11 +79,11 @@ public class CadastroActivity extends AppCompatActivity {
                     usuarios = new Usuarios();
                     //recupera todos os valores nos campos preenchidos na tela pelo usuário
                     //e armazena no objeto de usuário
-                    usuarios.setNome(edtCadNome.getText().toString());
-                    usuarios.setNickname(edtCadNickname.getText().toString());
-                    usuarios.setEmail(edtCadEmail.getText().toString());
+                    usuarios.setNome(edtCadNome.getText().toString().trim());
+                    usuarios.setNickname(edtCadNickname.getText().toString().trim());
+                    usuarios.setEmail(edtCadEmail.getText().toString().trim());
                     usuarios.setSenha(edtCadSenha.getText().toString());
-                    usuarios.setAniversario(edtCadAniversario.getText().toString());
+                    usuarios.setAniversario(edtCadAniversario.getText().toString().trim());
                     //faz a checagem de qual botão de radio está selecionado para preencher o campo sexo
                     if (rbFeminino.isChecked()) {
                         usuarios.setSexo("Feminino");

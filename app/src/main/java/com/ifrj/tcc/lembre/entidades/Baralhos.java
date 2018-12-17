@@ -11,13 +11,21 @@ public class Baralhos {
     private String descricao;
     private String categoria;
     private String autor;
-    private ArrayList<Cartas> cartas;
+    private Integer quantCartas;
 
     public Baralhos() {    }
 
     public void salvar(){
         DatabaseReference referenciaDatabase = ConfiguracaoFirebase.getFirebase();
         referenciaDatabase.child("baralhos").child(String.valueOf(getTitulo())).setValue(this);
+    }
+
+    public Integer getQuantCartas() {
+        return quantCartas;
+    }
+
+    public void setQuantCartas(Integer quantCartas) {
+        this.quantCartas = quantCartas;
     }
 
     public String getTitulo() {
@@ -50,13 +58,5 @@ public class Baralhos {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    public ArrayList<Cartas> getCartas() {
-        return cartas;
-    }
-
-    public void setCartas(ArrayList<Cartas> cartas) {
-        this.cartas = cartas;
     }
 }
