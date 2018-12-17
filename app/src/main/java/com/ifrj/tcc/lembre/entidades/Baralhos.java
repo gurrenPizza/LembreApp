@@ -11,7 +11,7 @@ public class Baralhos {
     private String descricao;
     private String categoria;
     private String autor;
-    private Integer quantCartas;
+    private int quantCartas;
 
     public Baralhos() {    }
 
@@ -20,7 +20,7 @@ public class Baralhos {
         referenciaDatabase.child("baralhos").child(String.valueOf(getTitulo())).setValue(this);
     }
 
-    public Integer getQuantCartas() {
+    public int getQuantCartas() {
         return quantCartas;
     }
 

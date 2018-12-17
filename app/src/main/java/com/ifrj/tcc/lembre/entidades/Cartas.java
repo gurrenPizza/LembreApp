@@ -12,11 +12,14 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.ValueEventListener;
 import com.ifrj.tcc.lembre.DAO.ConfiguracaoFirebase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Cartas {
 
     private String frente;
     private String verso;
-    private Integer idCarta;
+    private int idCarta;
 
     public Cartas() {
     }
@@ -35,12 +38,14 @@ public class Cartas {
                  @Override
                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                          Baralhos baralho = dataSnapshot.getValue(Baralhos.class);
-                         Toast.makeText(c, String.valueOf(baralho.getQuantCartas()+4), Toast.LENGTH_SHORT).show();
+                         Toast.makeText(c, String.valueOf(baralho.getQuantCartas()), Toast.LENGTH_SHORT).show();
                          quantCartas = baralho.getQuantCartas();
-                         if(quantCartas==0)
-                             idCarta=0;
-                         else
-                             idCarta=quantCartas+1;
+                         if(quantCartas==0) {
+                             setIdCarta(0);
+                         }
+                         else {
+                             setIdCarta(quantCartas + 1);
+                         }
                      }
 
                  @Override
@@ -48,13 +53,34 @@ public class Cartas {
 
                  }
              });
-             cartaRef.child("cartas").child(String.valueOf(idCarta)).setValue(this);
-             cartaRef.child("quantCartas").setValue(String.valueOf(idCarta+1));
-
 
         }catch (Exception e){
             e.printStackTrace();
         }
+        DatabaseReference cartaRef = ConfiguracaoFirebase.getFirebase().child("baralhos")
+                .child(tituloBaralho);
+
+        cartaRef.child("cartas").child(String.valueOf(getIdCarta())).setValue(this);
+        Toast.makeText(c, getIdCarta(), Toast.LENGTH_SHORT).show();
+        cartaRef.child("quantCartas").setValue(String.valueOf(getIdCarta()+1));
+    }
+
+    @Exclude
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> hashMapCarta = new HashMap<>();
+        hashMapCarta.put("frente", getFrente());
+        hashMapCarta.put("verso", getVerso());
+        hashMapCarta.put("idCarta", getIdCarta());
+
+        return hashMapCarta;
+    }
+
+    public Integer getIdCarta() {
+        return idCarta;
+    }
+
+    public void setIdCarta(Integer idCarta) {
+        this.idCarta = idCarta;
     }
 
     public String getFrente() {
